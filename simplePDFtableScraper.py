@@ -1,13 +1,12 @@
-import io
-import PyPDF2
+import scraperwiki
 import requests
+import lxml
+import io
 
 url = 'http://www.ct.gov/hix/lib/hix/CT_DSG_-12132014_version_1.2_%28with_clarifications%29.pdf'
 
-r = requests.get(url)
-f = io.BytesIO(r.content)
+pdfdata = open(url, 'r')
+xmldata = scraperwiki.pdftoxml(pdfdata)
+root = lxml.etree.fromstring(xmldata)
 
-reader = PyPDF2.PdfFileReader(f)
-contents = reader.getPage(10).extractText().split('\n')
-
-print(contents)
+print(lxml.etree.tostring(root, pretty_print=True))
