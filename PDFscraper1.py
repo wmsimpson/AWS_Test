@@ -10,14 +10,17 @@ f = io.BytesIO(r.content)
 reader = PyPDF2.PdfFileReader(f)
 contents = reader.getPage(10).extractText() #.split('[A-Z][^A-Z]*|\n')
 
-#data = re.sub( r"([A-Z])", r" \1", contents).split() #findall('[a-zA-Z][^A-Z]*', contents)
+data = re.sub( r"([A-Z])", r" \1", contents).split() #findall('[a-zA-Z][^A-Z]*', contents)
 
-print(contents)
+# print(contents)
 
-# csv = open('AWStest.csv', 'w')
-# csv.write(contents)
-# csv.close()
-#
-# with open(AWStest.csv) as fobj:
-#     for line in fobj:
-#         data = re.split()
+csv = open('AWStest.csv', 'w')
+csv.write(contents)
+csv.close()
+
+# fcsv = open('AWStest.csv', 'r')
+
+# for line in fcsv.readlines():
+#     line = line.strip()
+#     line.split('[a-zA-Z][^A-Z]*')
+#     print(re.findall('[A-Z][^A-Z]*', line))
